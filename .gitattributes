@@ -1,4 +1,8 @@
+*.nimble linguist-detectable=true
+*.nims linguist-detectable=true
+*.nim linguist-detectable=true
+
+*.cpp linguist-detectable=false
 *.c linguist-detectable=false
 *.h linguist-detectable=false
 *.m linguist-detectable=false
-*.cpp linguist-detectable=false
