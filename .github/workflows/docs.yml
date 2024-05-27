@@ -1,0 +1,42 @@
+name: generate-doc
+run-name: Generate documentation
+
+on: 
+  push:
+    branches:
+      - "main"
+    paths:
+      - "nimdoc.cfg"
+      - "libtray.nimble"
+
+      - "src/**"
+      - ".github/workflows/**"
+
+jobs:
+  generate-doc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Nim
+        uses: jiro4989/setup-nim-action@v1
+        with:
+          nim-version: stable
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate documentation
+        run: |
+          nimble doc src/libtray
+
+          echo "<!DOCTYPE html><html><head><meta http-equiv='Refresh' content='0; url=libtray.html'></head></html>" > htmldocs/index.html
+
+      - name: Deploy to GitHub Pages
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v3
+        with:
+          build_dir: htmldocs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
