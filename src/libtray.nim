@@ -49,6 +49,9 @@ type
     submenu*: ptr UncheckedArray[TrayMenuItem] # array
 
 proc setMenus*(tray: var Tray, menus: openArray[TrayMenuItem]) =
+  ## Safely set the menus of a tray. This proc adds the terminating NULL
+  ## object at the end for you.
+  
   if tray.menu != nil:
     dealloc(addr tray.menu)
 
@@ -60,6 +63,9 @@ proc setMenus*(tray: var Tray, menus: openArray[TrayMenuItem]) =
   # tray.menu[menus.len] = TrayMenuItem()
 
 proc setSubMenus*(trayItem: var TrayMenuItem, menus: openArray[TrayMenuItem]) =
+  ## Safely set the submenus of a tray menu item. This proc adds the terminating
+  ## NULL object at the end for you.
+
   if trayItem.submenu != nil:
     dealloc(addr trayItem.submenu)
 
@@ -109,9 +115,9 @@ proc initTrayMenuItem*(
 proc trayGetInstance*(): ptr Tray {.cdecl, importc: "tray_get_instance", trayproc.}
   ## Returns the tray instance.
 proc trayInit*(tray: ptr Tray): cint {.cdecl, importc: "tray_init", trayproc.}
-  ## Creates tray icon. Returns -1 if tray icon/menu can't be created.
+  ## Creates tray icon. Returns `-1` if tray icon/menu can't be created.
 proc trayLoop*(blocking: cint): cint {.cdecl, importc: "tray_loop", trayproc.}
-  ## Runs one iteration of the UI loop. Returns -1 if tray_exit() has been called.
+  ## Runs one iteration of the UI loop. Returns `-1` if `trayExit()`_ has been called.
 proc trayUpdate*(tray: ptr Tray) {.cdecl, importc: "tray_update", trayproc.}
   ## Updates tray icon and menu.
 proc trayExit*() {.cdecl, importc: "tray_exit", trayproc.}
