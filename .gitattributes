@@ -3,6 +3,7 @@
 *.nim linguist-detectable=true
 
 *.cpp linguist-detectable=false
+*.moc linguist-detectable=false
 *.c linguist-detectable=false
 *.h linguist-detectable=false
 *.m linguist-detectable=false
