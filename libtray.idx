@@ -1,0 +1,12 @@
+nimTitle	libtray	libtray.html	module libtray		0
+nim	Tray	libtray.html#Tray	object Tray		41
+nim	TrayMenuItem	libtray.html#TrayMenuItem	object TrayMenuItem		47
+nim	setMenus	libtray.html#setMenus,Tray,openArray[TrayMenuItem]	proc setMenus(tray: var Tray; menus: openArray[TrayMenuItem])		54
+nim	setSubMenus	libtray.html#setSubMenus,TrayMenuItem,openArray[TrayMenuItem]	proc setSubMenus(trayItem: var TrayMenuItem; menus: openArray[TrayMenuItem])		68
+nim	initTray	libtray.html#initTray,string,string,proc(ptr.Tray),openArray[TrayMenuItem]	proc initTray(iconFilepath: string = ""; tooltip: string = "";\n         cb: proc (tray: ptr Tray) {.cdecl.} = nil;\n         menus: openArray[TrayMenuItem] = []): Tray		82
+nim	initTrayMenuItem	libtray.html#initTrayMenuItem,string,bool,bool,proc(ptr.TrayMenuItem),openArray[TrayMenuItem]	proc initTrayMenuItem(text: string = ""; disabled: bool = false;\n                 checked: bool = false;\n                 cb: proc (item: ptr TrayMenuItem) {.cdecl.} = nil;\n                 submenus: openArray[TrayMenuItem] = []): TrayMenuItem		99
+nim	trayGetInstance	libtray.html#trayGetInstance	proc trayGetInstance(): ptr Tray		118
+nim	trayInit	libtray.html#trayInit,ptr.Tray	proc trayInit(tray: ptr Tray): cint		120
+nim	trayLoop	libtray.html#trayLoop,cint	proc trayLoop(blocking: cint): cint		122
+nim	trayUpdate	libtray.html#trayUpdate,ptr.Tray	proc trayUpdate(tray: ptr Tray)		124
+nim	trayExit	libtray.html#trayExit	proc trayExit()		126
