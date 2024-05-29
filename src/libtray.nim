@@ -32,6 +32,7 @@ else:
 
   elif defined(macos) or defined(trayAppkit):
     {.passC: "-DTRAY_APPKIT".}
+    {.passL: "-framework Cocoa".}
     {.compile: "./trayc/tray_darwin.m".}
 
   {.pragma: trayproc.}
