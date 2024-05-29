@@ -25,8 +25,10 @@ else:
     {.compile: "./trayc/tray_windows.c".}
 
   elif defined(linux) or defined(trayQt):
-    {.passC: "-DTRAY_QT".}
+    {.passC: "-DQT_CORE_LIB  -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DTRAY_EXPORTS -DTRAY_qt6=1 -Dtray_EXPORTS -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -fPIC -fPIC".}
+    {.passL: "-lQt6Widgets -lQt6Gui -lQt6Core -lGLX -lOpenGL".}
     {.compile: "./trayc/tray_linux.cpp".}
+    {.compile: "./trayc/QtTrayMenu.cpp".}
 
   elif defined(macos) or defined(trayAppkit):
     {.passC: "-DTRAY_APPKIT".}
