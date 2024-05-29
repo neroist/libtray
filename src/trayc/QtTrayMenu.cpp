@@ -1,5 +1,6 @@
 #include "QtTrayMenu.h"
 #include <QApplication>
+#include "main.moc"
 
 int argc = 1;
 char *argvArray[] = {(char*)"TrayMenuApp", nullptr};
